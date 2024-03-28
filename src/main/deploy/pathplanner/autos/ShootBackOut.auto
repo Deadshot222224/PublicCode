@@ -2,10 +2,10 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 1.36086297850199,
-      "y": 5.539225686154654
+      "x": 2,
+      "y": 2
     },
-    "rotation": 5.592218238712801e-24
+    "rotation": 0
   },
   "command": {
     "type": "sequential",
@@ -14,7 +14,7 @@
         {
           "type": "named",
           "data": {
-            "name": "TestAuto"
+            "name": "ShootAndBackOut"
           }
         }
       ]

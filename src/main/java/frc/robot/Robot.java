@@ -59,7 +59,7 @@ public class Robot extends TimedRobot
   CANSparkBase TopShooter = new CANSparkMax(17, MotorType.kBrushless);
   CANSparkBase BottomShooter = new CANSparkMax(18, MotorType.kBrushless);
   CANSparkBase Indexer = new CANSparkMax(21, MotorType.kBrushless);
-  SparkAbsoluteEncoder encoder = Indexer.getAbsoluteEncoder(SparkAbsoluteEncoder.Type.kDutyCycle);
+
   static final double intake_power = 1;
   static final double intake_stop = 0;
   static final double shooter_power = 0.75;
@@ -70,8 +70,8 @@ public class Robot extends TimedRobot
   static final double arm_stop = 0;
   static final double shooter_reverse = -0.75;
   static final double generic_stop = 0;
-  static final double Indexer_power = 0.25;
-  static final double Indexer_reverse = -0.25;
+  static final double Indexer_power = 1;
+  static final double Indexer_reverse = -1;
   private static Robot instance;
   private Command m_autonomousCommand;
   private Command m_BlueDSLCommand;
@@ -196,7 +196,7 @@ public void teleopPeriodic() {
   
 
 // Other teleop periodic code...
-
+/*-------------------------------------------------------- */ /* Intake */
 // intake controls for left bumper and right bumper
 if(controller_driver.getLeftTriggerAxis() > 0.7) 
   {
@@ -210,6 +210,7 @@ if(controller_driver.getLeftTriggerAxis() > 0.7)
   {
     Intake.set(intake_stop);
   }
+  /*------------------------------------------------------*/ /* Arm's */
   // arm controls for the left and right stick
   if(controller_driver.getLeftY() > 0.4)
   {
@@ -231,7 +232,8 @@ if(controller_driver.getLeftTriggerAxis() > 0.7)
     RightArm.set(arm_power);
   }
   else{RightArm.set(generic_stop);}
-
+/*-------------------------------------------------------- */ /* Shooter */
+/*setting up shooter controls... */
   if(controller_driver.getRightTriggerAxis() > 0.7)
   {
     TopShooter.set(shooter_power);
@@ -247,6 +249,8 @@ if(controller_driver.getLeftTriggerAxis() > 0.7)
     TopShooter.set(generic_stop);
     BottomShooter.set(generic_stop);
   }
+  /*-------------------------------------------------------- */ /* Indexer */
+  /*setting up indexer controls */
   if(controller_driver.getYButton() == true)
   {
     Indexer.set(Indexer_power);
@@ -261,7 +265,7 @@ if(controller_driver.getLeftTriggerAxis() > 0.7)
     {
       Indexer.set(generic_stop);
     }
-
+/*---------------------------------------------------------- */ /* end of operator controls code, you can find controls for the drive base in RobotContainer.java */
   }
   
   
@@ -297,6 +301,11 @@ if(controller_driver.getLeftTriggerAxis() > 0.7)
   @Override
   public void simulationInit()
   {
+      // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
+    // autonomous chooser on the dashboard.
+    
+   
+    
   }
 
   /**
@@ -305,5 +314,6 @@ if(controller_driver.getLeftTriggerAxis() > 0.7)
   @Override
   public void simulationPeriodic()
   {
+    
   }
 }
